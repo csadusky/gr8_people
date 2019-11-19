@@ -65,7 +65,7 @@ const ApprovalList = ({ approvals, selectedIndex) => {
           [classes.badge__rejected]: approval.status === "rejected"
         });
         return (
-          <li key={index} className={itemClassName}>
+          <li key={index} className={itemClassName} >
             <p className={classes.title}>Approval {index + 1}</p>
             <span className={badgeClassName}>{approval.status}</span>
           </li>

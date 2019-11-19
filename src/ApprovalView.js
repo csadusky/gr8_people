@@ -14,31 +14,47 @@ const useStyles = createUseStyles({
     backgroundColor: "#ccc",
     color: "#333",
     padding: "2em",
+    marginBottom: "10px",
     textTransform: "capitalize",
     fontWeight: "bold",
     filter: "drop-shadow(0 0 3px #333)"
+  },
+  approverContainer: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    padding: "0px 20px 10px 20px",
+
   },
   badge: {
     borderRadius: "4px",
     backgroundColor: "#ccc",
     color: "#333",
-    display: "inline-block",
+    display: "flex",
     fontSize: "10px",
     textTransform: "uppercase",
     padding: "5px 4px",
     fontWeight: "bold"
   },
+  approverDiv:{
+    display: "flex",
+    flexFlow: "row wrap",
+    justifyContent: "space-between",
+    flex: "1"
+  },
   approved: {
     backgroundColor: "hsla(115, 29%, 71%, 1)"
-
-  },
-  icon:{
-    "&:before": {
-      content: '"⧖"'
-    }
   },
   rejected: {
     backgroundColor: "hsla(0, 100%, 50%, 0.48)"
+  },
+  icon:{
+    alignSelf: "flex-start",
+    color: "#737070",
+    paddingRight: "15px",
+    "&:before": {
+      content: '"⧖"'
+    }
   },
   iconApproved:{
     "&:before": {
@@ -49,6 +65,11 @@ const useStyles = createUseStyles({
     "&:before": {
       content: '"✗"'
     }
+  },
+  timeContainer:{
+    width: "100%",
+    color: "#8e8e8e",
+    fontSize: "11px"
   }
 });
 
@@ -96,12 +117,15 @@ const ApprovalView = ({ approvals, selectedIndex }) => {
           timeSubmitted = getFormattedDate(timeSubmitted, 'submitted')
 
           return(
-            <div key={index} >
-              <span className={badgeIconName}></span>
-              <p className={classes.title}>Approver {index + 1}</p>
-              <span className={badgeClassName}>{approver.status}</span>
-              <div>{timeRequested}</div>
-              <div>{timeSubmitted}</div>
+            <div key={index} className={classes.approverContainer}>
+
+              <div className={badgeIconName}></div>
+              <div className={classes.approverDiv}>
+                <div className={classes.title}>Approver {index + 1}</div>
+                <div className={badgeClassName}>{approver.status}</div>
+                <div className={classes.timeContainer}>{timeRequested}</div>
+                <div className={classes.timeContainer}>{timeSubmitted}</div>
+              </div>
 
             </div>
           )
