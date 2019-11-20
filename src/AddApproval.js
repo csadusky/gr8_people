@@ -33,13 +33,66 @@ const useStyles = createUseStyles({
   }
 });
 
-const AddApproval = () => {
+const AddApproval = ({approvals, setApprovals, errors, setErrors}) => {
   const classes = useStyles();
+  const addApp = () => {
+    const newApproval = {
+      status: "rejected",
+      approvers: [
+        {
+          status: "approvedj",
+          requestedOn: "2019-11-01T12:30:00Z",
+          respondedOn: "2019-11-02T09:01:00Z"
+        },
+        {
+          status: "rejected",
+          requestedOn: "2019-11-01T12:30:00Z",
+          respondedOn: "2019-11-02T16:35:00Z"
+        },
+        {
+          status: "pending",
+          requestedOn: "2019-11-01T12:30:00Z"
+        }
+      ]
+    }
+    const statusAccepted = (approver) =>{
+      debugger
+      return approver.status === "approved" || approver.status === "rejected" || approver.status === "pending"
+    }
+    const approved = (approver) =>{
+      return approver.status === "approved"
+    }
+    const allStatusAccepted = newApproval.approvers.every(statusAccepted)
+
+    if(allStatusAccepted){
+      let approval;
+      let rejected = false;
+      for(var i = 0; i < newApproval.approvers.length; i++) {
+          if (newApproval.approvers[i].status === "rejected") {
+              rejected = true;
+              break;
+          }
+      }
+      if (rejected){
+        approval = "rejected"
+      } else if (newApproval.approvers.every(approved)){
+        approval = "approved"
+      }else{
+        approval = "pending"
+      }
+      newApproval.status = approval;
+      setApprovals([...approvals, newApproval])
+    }else{
+      setErrors([...errors, "wrong type"])
+      console.log(errors)
+    }
+
+  }
   return (
     <div className={classes.root}>
       <textarea className={classes.textarea} />
       <div className={classes.buttonBar}>
-        <button className={classes.button}>Add Approval</button>
+        <button className={classes.button} onClick={() => addApp()}>Add Approval</button>
       </div>
     </div>
   );

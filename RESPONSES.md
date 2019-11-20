@@ -11,7 +11,7 @@
    2. About how long did this task take you to complete? Was this longer or shorter than you initially expected?
       > This was pretty quick to do.  It took less than half an hour.  I already had an idea how to do it from doing my initial research. It took around the time I expected it to.
    3. Given more time, is there anything you would done differently?
-      > I dont think so. Still was a pretty simple task. 
+      > I dont think so. This was a pretty simple task.
 3. Please respond to the questions below in reference to Task 3.
    1. In a few sentences, please describe how you completed this task.
       > [Respond here]

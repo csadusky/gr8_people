@@ -24,7 +24,7 @@ const useStyles = createUseStyles({
   }
 });
 
-const AddApprovalErrors = ({ errors = [] }) => {
+const AddApprovalErrors = ({ errors}) => {
   const classes = useStyles();
   if (!errors.length) {
     return null;

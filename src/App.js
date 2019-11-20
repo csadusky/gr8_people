@@ -53,12 +53,13 @@ function App() {
   // https://reactjs.org/docs/hooks-state.html
   const [approvals, setApprovals] = useState(initialApprovals);
   const [selectedIndex, setSelectedIndex] = useState(0);
+  const [errors, setErrors] = useState([]);
 
   return (
     <main className={classes.app}>
       <section className={classes.leftRail}>
-        <AddApproval />
-        <AddApprovalErrors errors={[]} />
+        <AddApproval approvals={approvals} setApprovals={setApprovals} errors={errors} setErrors={setErrors}/>
+        <AddApprovalErrors errors={errors} />
       </section>
 
       <section className={classes.approvalListWrap}>
