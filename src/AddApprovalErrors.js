@@ -20,7 +20,8 @@ const useStyles = createUseStyles({
     fontFamily: '"Courier New"',
     color: "red",
     padding: "0 1em",
-    lineHeight: "1.5"
+    lineHeight: "1.5",
+    whiteSpace: "pre-line"
   }
 });
 
@@ -33,7 +34,7 @@ const AddApprovalErrors = ({ errors}) => {
   return (
     <article className={classes.root}>
       <h1 className={classes.heading}>Errors</h1>
-      <pre className={classes.log}>{errors.join("\n")}</pre>
+      <pre className={classes.log}>{errors.join("\n\n")}</pre>
     </article>
   );
 };
