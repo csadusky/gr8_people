@@ -40,8 +40,8 @@ const AddApproval = ({approvals, setApprovals, errors, setErrors}) => {
       status: "rejected",
       approvers: [
         {
-          status: "approved",
-          requestedOn: "2019-11-01T12:30:00Z",
+          status: "approvedm",
+          requestedOn: "2019-11-01T12:30:00Za",
           respondedOn: "2019-11-02T09:01:00Z"
         },
         {
@@ -55,32 +55,30 @@ const AddApproval = ({approvals, setApprovals, errors, setErrors}) => {
         }
       ]
     }
+
+    // *** check if all statuses from each approver is either approved, rejected, or pending
     const statusAccepted = (approver) =>{
       return approver.status === "approved" || approver.status === "rejected" || approver.status === "pending"
     }
     const allStatusValid = newApproval.approvers.every(statusAccepted)
 
-    const approved = (approver) =>{
-      return approver.status === "approved"
-    }
 
+    // *** check if all dates submitted are valid
     const isValidDates =  (date) =>{
       return moment(date, "YYYY-MM-DDTHH:mm:ssZ", true).isValid()
     }
-    // check if all dates submitted are valid
-
+    //make an arrays for requested and responded so can use every to check if dates are valid
     const requestedOnArr = newApproval.approvers.map(approver => approver.requestedOn)
     // first filter through the approvers to see if they responded, this does not have to be added when creating approval
     const respondedOnFilter = (approver) => {
       return approver.respondedOn
     }
     const respondedOnArr = newApproval.approvers.filter(respondedOnFilter).map(approver => approver.respondedOn)
-
     const allRequestedValid = requestedOnArr.every(isValidDates)
     const allRespondedValid = respondedOnArr.every(isValidDates)
-    debugger;
 
-    // if all status and dates are valid then check to see what overall status is
+
+    // *** if all status and dates are valid then check to see what overall status is
     if(allStatusValid && allRequestedValid && allRespondedValid){
       let approval;
       let rejected = false;
@@ -89,6 +87,9 @@ const AddApproval = ({approvals, setApprovals, errors, setErrors}) => {
               rejected = true;
               break;
           }
+      }
+      const approved = (approver) =>{
+        return approver.status === "approved"
       }
       if (rejected){
         approval = "rejected"
@@ -100,7 +101,18 @@ const AddApproval = ({approvals, setApprovals, errors, setErrors}) => {
       newApproval.status = approval;
       setApprovals([...approvals, newApproval])
     }else{
-      setErrors([...errors, "wrong type"])
+      let errArr = [];
+      if(!allStatusValid){
+        errArr.push("Wrong status type. Please make sure you use 'approved', 'rejected', or 'pending'");
+      }
+      if(!allRequestedValid){
+        errArr.push("Requested on date format is incorrect. Please make sure all dates are submitted like YYYY-MM-DDTHH:mm:ssZ")
+      }
+      if(!allRespondedValid){
+        errArr.push("Responded on date format is incorrect. Please make sure all dates are submitted like YYYY-MM-DDTHH:mm:ssZ")
+      }
+
+      setErrors([...errors, errArr[0], errArr[1], errArr[2]])
 
     }
 
