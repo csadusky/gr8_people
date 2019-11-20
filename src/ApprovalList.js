@@ -51,7 +51,7 @@ const useStyles = createUseStyles({
   }
 });
 
-const ApprovalList = ({ approvals, selectedIndex) => {
+const ApprovalList = ({ approvals, selectedIndex, setSelectedIndex}) => {
   const classes = useStyles();
   return (
     <ul className={classes.root}>
@@ -65,7 +65,7 @@ const ApprovalList = ({ approvals, selectedIndex) => {
           [classes.badge__rejected]: approval.status === "rejected"
         });
         return (
-          <li key={index} className={itemClassName} >
+          <li key={index} className={itemClassName} onClick={() => setSelectedIndex(selectedIndex = index)}>
             <p className={classes.title}>Approval {index + 1}</p>
             <span className={badgeClassName}>{approval.status}</span>
           </li>

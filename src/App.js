@@ -62,7 +62,7 @@ function App() {
       </section>
 
       <section className={classes.approvalListWrap}>
-        <ApprovalList approvals={approvals} selectedIndex={selectedIndex}/>
+        <ApprovalList approvals={approvals} selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex}/>
       </section>
 
       <section className={classes.approvalViewWrap}>
