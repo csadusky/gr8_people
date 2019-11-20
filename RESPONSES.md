@@ -14,7 +14,7 @@
       > I dont think so. This was a pretty simple task.
 3. Please respond to the questions below in reference to Task 3.
    1. In a few sentences, please describe how you completed this task.
-      > [Respond here]
+      > I created a test "newApproval" object in AddApproval so that I could focus on figuring out how I was going to determine the overall status, approver status validating, time validation, input error handling, and how to actually set the approval. So once I was able to set an approval and see it show up in the approval view, I added on the additional tasks from there.  First I check to see if each approval status is one of the three options, then I check if the dates for requested and submitted are valid, if those conditions are met then I check the approvals overall status, add it to the approval object and then finally set the new approval. after accomplishing all the tasks with my test "newApproval" object, I started working on the form. 
    2. About how long did this task take you to complete? Was this longer or shorter than you initially expected?
       > [Respond here]
    3. Given more time, is there anything you would done differently?

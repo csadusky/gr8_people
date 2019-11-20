@@ -5,6 +5,7 @@
   "dependencies": {
     "clsx": "^1.0.4",
     "jss-preset-default": "^10.0.0",
+    "moment": "^2.24.0",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
     "react-jss": "^10.0.0",

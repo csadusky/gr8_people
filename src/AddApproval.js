@@ -1,6 +1,6 @@
 import React from "react";
 import { createUseStyles } from "react-jss";
-
+import moment from "moment";
 // https://cssinjs.org/react-jss/#basic
 const useStyles = createUseStyles({
   root: {
@@ -40,7 +40,7 @@ const AddApproval = ({approvals, setApprovals, errors, setErrors}) => {
       status: "rejected",
       approvers: [
         {
-          status: "approvedj",
+          status: "approved",
           requestedOn: "2019-11-01T12:30:00Z",
           respondedOn: "2019-11-02T09:01:00Z"
         },
@@ -56,15 +56,32 @@ const AddApproval = ({approvals, setApprovals, errors, setErrors}) => {
       ]
     }
     const statusAccepted = (approver) =>{
-      debugger
       return approver.status === "approved" || approver.status === "rejected" || approver.status === "pending"
     }
+    const allStatusValid = newApproval.approvers.every(statusAccepted)
+
     const approved = (approver) =>{
       return approver.status === "approved"
     }
-    const allStatusAccepted = newApproval.approvers.every(statusAccepted)
 
-    if(allStatusAccepted){
+    const isValidDates =  (date) =>{
+      return moment(date, "YYYY-MM-DDTHH:mm:ssZ", true).isValid()
+    }
+    // check if all dates submitted are valid
+
+    const requestedOnArr = newApproval.approvers.map(approver => approver.requestedOn)
+    // first filter through the approvers to see if they responded, this does not have to be added when creating approval
+    const respondedOnFilter = (approver) => {
+      return approver.respondedOn
+    }
+    const respondedOnArr = newApproval.approvers.filter(respondedOnFilter).map(approver => approver.respondedOn)
+
+    const allRequestedValid = requestedOnArr.every(isValidDates)
+    const allRespondedValid = respondedOnArr.every(isValidDates)
+    debugger;
+
+    // if all status and dates are valid then check to see what overall status is
+    if(allStatusValid && allRequestedValid && allRespondedValid){
       let approval;
       let rejected = false;
       for(var i = 0; i < newApproval.approvers.length; i++) {
@@ -84,7 +101,7 @@ const AddApproval = ({approvals, setApprovals, errors, setErrors}) => {
       setApprovals([...approvals, newApproval])
     }else{
       setErrors([...errors, "wrong type"])
-      console.log(errors)
+
     }
 
   }
