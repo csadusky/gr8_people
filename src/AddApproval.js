@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { createUseStyles } from "react-jss";
 import moment from "moment";
 // https://cssinjs.org/react-jss/#basic
@@ -13,6 +13,12 @@ const useStyles = createUseStyles({
     resize: "none",
     display: "block",
     flex: 1
+  },
+  form:{
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "stretch",
+    flex: "1"
   },
   buttonBar: {
     textAlign: "center",
@@ -35,7 +41,15 @@ const useStyles = createUseStyles({
 
 const AddApproval = ({approvals, setApprovals, errors, setErrors}) => {
   const classes = useStyles();
-  const addApp = () => {
+  var [value, setValue] = useState("");
+  var handleTextAreaChange = (event) => {
+    setValue(value = event.target.value)
+  }
+
+  const addApp = (event) => {
+    event.preventDefault();
+    console.log(value)
+
     const newApproval = {
       status: "rejected",
       approvers: [
@@ -119,10 +133,12 @@ const AddApproval = ({approvals, setApprovals, errors, setErrors}) => {
   }
   return (
     <div className={classes.root}>
-      <textarea className={classes.textarea} />
-      <div className={classes.buttonBar}>
-        <button className={classes.button} onClick={() => addApp()}>Add Approval</button>
-      </div>
+      <form className={classes.form} onSubmit={addApp}>
+        <textarea className={classes.textarea} value={value} onChange={handleTextAreaChange}/>
+        <div className={classes.buttonBar}>
+          <button className={classes.button} type="submit">Add Approval</button>
+        </div>
+      </form>
     </div>
   );
 };
