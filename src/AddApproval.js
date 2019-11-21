@@ -48,27 +48,44 @@ const AddApproval = ({approvals, setApprovals, errors, setErrors}) => {
 
   const addApp = (event) => {
     event.preventDefault();
-    console.log(value)
+    let newApproval = {
+      approvers:[]
+    };
+    // *** format submitted approval to create newApproval object. trim the white space. split status, requestedOn, and respondedOn. remove extra spaces, if any, between items
+    let submittedApproval = value.split("\n");
+    submittedApproval = submittedApproval.map(item => item.trim());
+    submittedApproval = submittedApproval.map(item => {
+      let splitStr = item.split(" ");
+      splitStr = splitStr.filter(Boolean)
+      let obj = {
+        status: splitStr[1],
+        requestedOn: splitStr[0],
+        respondedOn: splitStr[2]
+      }
+      newApproval.approvers.push(obj)
+      debugger
 
-    const newApproval = {
-      status: "rejected",
-      approvers: [
-        {
-          status: "approvedm",
-          requestedOn: "2019-11-01T12:30:00Za",
-          respondedOn: "2019-11-02T09:01:00Z"
-        },
-        {
-          status: "rejected",
-          requestedOn: "2019-11-01T12:30:00Z",
-          respondedOn: "2019-11-02T16:35:00Z"
-        },
-        {
-          status: "pending",
-          requestedOn: "2019-11-01T12:30:00Z"
-        }
-      ]
-    }
+    })
+    debugger
+    // const newApproval = {
+    //   status: "rejected",
+    //   approvers: [
+    //     {
+    //       status: "approvedm",
+    //       requestedOn: "2019-11-01T12:30:00Za",
+    //       respondedOn: "2019-11-02T09:01:00Z"
+    //     },
+    //     {
+    //       status: "rejected",
+    //       requestedOn: "2019-11-01T12:30:00Z",
+    //       respondedOn: "2019-11-02T16:35:00Z"
+    //     },
+    //     {
+    //       status: "pending",
+    //       requestedOn: "2019-11-01T12:30:00Z"
+    //     }
+    //   ]
+    // }
 
     // *** check if all statuses from each approver is either approved, rejected, or pending
     const statusAccepted = (approver) =>{
