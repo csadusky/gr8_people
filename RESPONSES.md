@@ -14,15 +14,15 @@
       > I dont think so. This was a pretty simple task.
 3. Please respond to the questions below in reference to Task 3.
    1. In a few sentences, please describe how you completed this task.
-      > I created a test "newApproval" object in AddApproval so that I could focus on figuring out how I was going to determine the overall status, approver status validating, time validation, input error handling, and how to actually set the approval. So once I was able to set an approval and see it show up in the approval view, I added on the additional tasks from there.  First I check to see if each approval status is one of the three options, then I check if the dates for requested and submitted are valid, if those conditions are met then I check the approvals overall status, add it to the approval object and then finally set the new approval. after accomplishing all the tasks with my test "newApproval" object, I started working on the form. 
+      > I created a test "newApproval" object in AddApproval so that I could focus on figuring out how I was going to determine the overall status, approver status validating, time validation, input error handling, and how to actually set the approval. So once I was able to set an approval and see it show up in the approval view, I added on the additional tasks from there.  First I check to see if each approval status is one of the three options, then I check if the dates for requested and submitted are valid, if those conditions are met then I check the approvals overall status, add it to the approval object and then finally set the new approval. I decided to use moment.js to validate the time and make sure it was submitted in proper format. after accomplishing all the tasks with my test "newApproval" object, I started working on the form. I split the string submitted from the textarea and added it so my new approval object. Once I was able to create my newApproval from the submitted textArea, I was done because I already figured out what to do with it.
    2. About how long did this task take you to complete? Was this longer or shorter than you initially expected?
-      > [Respond here]
+      > This task took the longest.  I think it took around 4 hours total (maybe more) I worked on it incrementally all day.  It took a little longer than I was expecting, but I knew it would take the longest out of the tasks.
    3. Given more time, is there anything you would done differently?
-      > [Respond here]
+      > I would have cleared the textArea and the errors, in between submitting approvals.
 4. Please briefly describe how you would define and implement an integration test for the following user-flows.
    1. A user attempts to submit an approval with syntax errors.
-      > [Respond here]
+      > An integration test for this user-flow would have to insure that addApproval and addApprovalError components are communicating properly to each other. I would come up with more test case scenarios to try to get syntax errors when inputing approvals and make sure error messages are showing up appropriately;
    2. A user submits an approval with no syntax errors.
-      > [Respond here]
+      > An integration test for this user-flow would have to insure that addApproval and approvalList, and ApprovalView components are communicating properly to each other. To test this I would come up with more test cases. For example, if an approval was submitted, you should make sure that the status is showing correctly in the appovalList and approvalView.
 5. About how long did it take you to complete these responses?
-   > [Respond here]
+   > I tried to do these responses as I was completing the tasks, so Im thinking total it probably took an hour.
