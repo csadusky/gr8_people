@@ -133,7 +133,7 @@ const AddApproval = ({approvals, setApprovals, errors, setErrors}) => {
   return (
     <div className={classes.root}>
       <form className={classes.form} onSubmit={addApp}>
-        <textarea className={classes.textarea} value={value} onChange={handleTextAreaChange}/>
+        <textarea className={classes.textarea} value={value} onChange={handleTextAreaChange} placeholder="enter approval like: '2019-11-01T12:30:00Z approved 2019-11-02T09:01:00Z' with a line break between each approver"/>
         <div className={classes.buttonBar}>
           <button className={classes.button} type="submit">Add Approval</button>
         </div>
